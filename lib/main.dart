@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:miniproject/article.dart';
 
-void main() {
+
+Future<String> loadJsonFile(String path) async {
+  // Loads the file from the Flutter assets and returns it as a String
+  return await rootBundle.loadString(path);
+}
+
+Future<void> main() async {
   runApp(const MyApp());
 }
 
@@ -85,7 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
+      body: ArticleList(),
+      /* body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -111,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-      ),
+      ), */
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
