@@ -4,69 +4,69 @@
     "name": "Toyota Supra Mk4 (1993)",
     "description": "The fourth-generation Toyota Supra became an icon of 1990s performance cars, boasting a 3.0-liter twin-turbo inline-six engine producing up to 320 horsepower. Its smooth design, bulletproof reliability, and immense tuning potential made it a favorite among enthusiasts and pop culture alike.",
     "price": 65000,
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Toyota_Supra_A80%2C_Bangladesh._%2833381482523%29.jpg"
   },
   {
     "id": 2,
     "name": "Mazda RX-7 FD3S (1992)",
     "description": "The Mazda RX-7 FD3S was celebrated for its lightweight chassis, near-perfect weight distribution, and distinctive twin-rotor Wankel engine. Its sleek curves and razor-sharp handling earned it cult status as one of Japan’s finest sports cars of the decade.",
     "price": 55000,
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8c/1994_Mazda_RX-7_R2_in_Vintage_Red%2C_front_left_%28Lime_Rock%29.jpg"
   },
   {
     "id": 3,
     "name": "Nissan Skyline GT-R R34 (1999)",
     "description": "The Nissan Skyline GT-R R34 combined advanced all-wheel drive and a potent RB26DETT engine to deliver exceptional performance. Its digital driver interface and legendary tuning potential cemented its place in automotive history and Japanese performance culture.",
     "price": 120000,
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Nissan_Skyline_GT-R_R34_V_Spec_II.jpg/960px-Nissan_Skyline_GT-R_R34_V_Spec_II.jpg?20150619164332"
   },
   {
     "id": 4,
     "name": "Honda NSX (1990)",
     "description": "The Honda NSX redefined supercar standards with everyday usability and precision engineering. Featuring an all-aluminum body, mid-mounted V6, and input from Formula 1 champion Ayrton Senna, it provided a balance of performance and refinement that rivaled European exotics.",
     "price": 90000,
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Honda_NSX_1993_Castle_Hedingham_2008.JPG/1200px-Honda_NSX_1993_Castle_Hedingham_2008.JPG"
   },
   {
     "id": 5,
     "name": "BMW E36 M3 (1992)",
     "description": "The BMW E36 M3 offered a blend of performance and practicality with its high-revving inline-six engine and balanced chassis. Known for its precise handling and understated looks, it became a benchmark for sports sedans of the 1990s.",
     "price": 40000,
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/BMWM3E36-001.jpg/1200px-BMWM3E36-001.jpg"
   },
   {
     "id": 6,
     "name": "Porsche 911 (993) (1994)",
     "description": "The Porsche 911 (993) marked the end of the air-cooled era, combining classic Porsche styling with improved handling and performance. Its timeless design and robust build quality make it one of the most sought-after 911 models today.",
     "price": 150000,
-    "image": ""
+    "image": "https://images-porsche.imgix.net/-/media/250EC08BC48142DEA25BEC9D2144BB0A_2FEBFABD29EB4E878E4D5E6E270E56C1_020_info-slider_993_carrera_s_1997-98_desktop?w=1299&q=85&auto=format"
   },
   {
     "id": 7,
     "name": "Chevrolet Corvette C5 (1997)",
     "description": "The fifth-generation Corvette introduced the LS1 V8 engine, offering 345 horsepower with improved refinement and comfort. Its composite body and modern suspension made it a capable grand tourer with true American performance DNA.",
     "price": 35000,
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Chevrolet_Corvette_C5.jpg"
   },
   {
     "id": 8,
     "name": "Mitsubishi Lancer Evolution VI (1999)",
     "description": "The Mitsubishi Lancer Evolution VI was built for rally dominance, featuring a turbocharged 2.0-liter engine, all-wheel drive, and aggressive aerodynamics. Its raw performance and razor-sharp response made it a legend among performance sedans.",
     "price": 45000,
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Mitsubishi_Lancer_Evolution_VI.jpg"
   },
   {
     "id": 9,
     "name": "Ferrari F355 (1994)",
     "description": "The Ferrari F355 combined elegant design with cutting-edge performance. Its 3.5-liter V8 produced 375 horsepower, paired with a screaming 8,500 rpm redline. It’s revered for bringing modern drivability to Ferrari’s mid-engine lineup.",
     "price": 160000,
-    "image": ""
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/00/2007-06-17_Ferrari_F355_GTS_%28kl%29.jpg"
   },
   {
     "id": 10,
     "name": "Acura Integra Type R (1997)",
     "description": "The Acura Integra Type R is often hailed as one of the best-handling front-wheel-drive cars ever built. Its hand-built 1.8-liter VTEC engine, lightweight chassis, and precise gearshift made it a favorite among driving purists and tuners alike.",
     "price": 38000,
-    "image": ""
+    "image": "https://hips.hearstapps.com/hmg-prod/images/1997-acura-integratyper-105-1589894166.jpg"
   }
 ]
