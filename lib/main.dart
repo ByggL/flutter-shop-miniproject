@@ -3,11 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:miniproject/article.dart';
 import 'package:miniproject/basket.dart';
 
-Future<String> loadJsonFile(String path) async {
-  // Loads the file from the Flutter assets and returns it as a String
-  return await rootBundle.loadString(path);
-}
-
 Future<void> main() async {
   runApp(const MyApp());
 }
@@ -89,15 +84,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Article> _itemBasket = [];
 
-  String _jsonFileString = "";
-
-  init() async {
-    final String jsonString = await loadJsonFile("assets/data/articles.json");
-    setState(() {
-      _jsonFileString = jsonString;
-    });
-  }
-
   void _addArticleToBasket(Article item) {
     setState(() {
       _itemBasket.add(item);
@@ -117,10 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildBody() {
     switch (_selectedIndex) {
       case 0:
-        return ArticleList(
-          onAddToBasket: _addArticleToBasket,
-          jsonString: _jsonFileString,
-        );
+        return ArticleList(onAddToBasket: _addArticleToBasket);
       case 1:
         return BasketList(
           basket: _itemBasket,
