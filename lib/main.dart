@@ -3,9 +3,64 @@ import 'package:flutter/services.dart';
 import 'package:miniproject/article.dart';
 import 'package:miniproject/basket.dart';
 
+Future<String> loadJsonFile(String path) async {
+  // Loads the file from the Flutter assets and returns it as a String
+  return await rootBundle.loadString(path);
+}
+
 Future<void> main() async {
   runApp(const MyApp());
 }
+
+ThemeData myDarkTheme = ThemeData(
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: const Color(0xFF121212),
+  colorScheme: const ColorScheme.dark(
+    primary: Colors.red,
+    secondary: Colors.redAccent,
+    surface: Color(0xFF1E1E1E),
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onSurface: Colors.white70,
+  ),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Color(0xFF1E1E1E),
+    foregroundColor: Colors.redAccent,
+    elevation: 2,
+  ),
+  cardTheme: CardThemeData(
+    color: const Color(0xFF1E1E1E),
+    shadowColor: Colors.red.withOpacity(0.3),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.redAccent,
+      foregroundColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ),
+  ),
+  outlinedButtonTheme: OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      foregroundColor: Colors.redAccent,
+      side: const BorderSide(color: Colors.redAccent),
+    ),
+  ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: Colors.redAccent,
+    foregroundColor: Colors.white,
+  ),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Color(0xFF1E1E1E),
+    selectedItemColor: Colors.redAccent,
+    unselectedItemColor: Colors.white70,
+  ),
+  snackBarTheme: const SnackBarThemeData(
+    backgroundColor: Color(0xFF2A2A2A),
+    contentTextStyle: TextStyle(color: Colors.white),
+    behavior: SnackBarBehavior.floating,
+  ),
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,9 +70,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      themeMode: ThemeMode.dark,
+      darkTheme: myDarkTheme,
       home: const MyHomePage(title: 'BuyMyCar.biz'),
     );
   }
@@ -34,6 +88,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Article> _itemBasket = [];
+
+  String _jsonFileString = "";
+
+  init() async {
+    final String jsonString = await loadJsonFile("assets/data/articles.json");
+    setState(() {
+      _jsonFileString = jsonString;
+    });
+  }
 
   void _addArticleToBasket(Article item) {
     setState(() {
@@ -54,7 +117,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildBody() {
     switch (_selectedIndex) {
       case 0:
-        return ArticleList(onAddToBasket: _addArticleToBasket);
+        return ArticleList(
+          onAddToBasket: _addArticleToBasket,
+          jsonString: _jsonFileString,
+        );
       case 1:
         return BasketList(
           basket: _itemBasket,
@@ -74,10 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
+      appBar: AppBar(title: Text(widget.title)),
       body: _buildBody(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,

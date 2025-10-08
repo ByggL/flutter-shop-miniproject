@@ -1,12 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-Future<String> loadJsonFile(String path) async {
-  // Loads the file from the Flutter assets and returns it as a String
-  return await rootBundle.loadString(path);
-}
 
 class Article {
   final int id;
@@ -54,8 +48,8 @@ class ArticleCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: SizedBox(
-                width: 100,
-                height: 100,
+                width: 120,
+                height: 120,
                 child: Image.network(
                   article.image.isNotEmpty
                       ? article.image
@@ -93,11 +87,23 @@ class ArticleCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        '\$${article.price}',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(color: Colors.grey[800]),
+                      OutlinedButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ArticleDetailsPage(
+                                article: article,
+                                onAdd: onAdd,
+                              ),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.info_outline),
+                        label: const Text('Details'),
                       ),
+                      const Spacer(),
+                      Text('\$${article.price}'),
                       const SizedBox(width: 10),
                       ElevatedButton.icon(
                         onPressed: () {
@@ -130,8 +136,89 @@ class ArticleCard extends StatelessWidget {
   }
 }
 
+class ArticleDetailsPage extends StatelessWidget {
+  final Article article;
+  final void Function(Article) onAdd;
+
+  const ArticleDetailsPage({
+    super.key,
+    required this.article,
+    required this.onAdd,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(article.name)),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                article.image.isNotEmpty
+                    ? article.image
+                    : 'https://via.placeholder.com/400',
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              article.name,
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '\$${article.price}',
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: Colors.green[700]),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              article.description,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            const SizedBox(height: 16),
+            ElevatedButton.icon(
+              onPressed: () {
+                onAdd(article);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('${article.name} added to basket'),
+                    duration: const Duration(seconds: 1),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.add_shopping_cart),
+              label: const Text('Add'),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                backgroundColor: Colors.greenAccent,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class ArticleList extends StatelessWidget {
-  ArticleList({super.key, required this.onAddToBasket});
+  final String jsonString;
+
+  ArticleList({
+    super.key,
+    required this.onAddToBasket,
+    required this.jsonString,
+  });
 
   // Synchronous JSON parsing
   final String jsonData = '''
@@ -148,16 +235,6 @@ class ArticleList extends StatelessWidget {
   {"id":10,"name":"Acura Integra Type R (1997)","description":"The Acura Integra Type R is often hailed as one of the best-handling front-wheel-drive cars ever built. Its hand-built 1.8-liter VTEC engine, lightweight chassis, and precise gearshift made it a favorite among driving purists and tuners alike.","price":38000,"image":"https://hips.hearstapps.com/hmg-prod/images/1997-acura-integratyper-105-1589894166.jpg"}
 ]
   ''';
-
-  // String _jsonFileString = "";
-
-  /* _init() async {
-    final String jsonString = await loadJsonFile("assets/data/articles.json");
-    setState(() {
-      _jsonFileString = jsonString;
-    })
-
-  } */
 
   final void Function(Article) onAddToBasket;
 

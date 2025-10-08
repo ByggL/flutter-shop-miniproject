@@ -83,6 +83,7 @@ class BasketCard extends StatelessWidget {
 class BasketList extends StatelessWidget {
   final List<Article> basket;
   final void Function(Article) onRemoveArticle;
+  // final String jsonString;
 
   const BasketList({
     super.key,
@@ -90,13 +91,42 @@ class BasketList extends StatelessWidget {
     required this.onRemoveArticle,
   });
 
+  double _totalPrice() {
+    double totalPrice = 0;
+    for (var i = 0; i < basket.length; i++) {
+      totalPrice += basket[i].price;
+    }
+
+    return totalPrice;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: basket.length,
-      itemBuilder: (context, index) {
-        return BasketCard(article: basket[index], onRemove: onRemoveArticle);
-      },
+    return Scaffold(
+      appBar: AppBar(title: const Text('Your Basket')),
+      body: basket.isEmpty
+          ? const Center(child: Text('Your basket is empty'))
+          : ListView.builder(
+              itemCount: basket.length,
+              itemBuilder: (context, index) {
+                return BasketCard(
+                  article: basket[index],
+                  onRemove: onRemoveArticle,
+                );
+              },
+            ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          // You can add navigation or dialog logic here later
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Checkout pressed')));
+        },
+        label: Text('Checkout - \$${_totalPrice()}'),
+        icon: const Icon(Icons.shopping_cart_checkout),
+        backgroundColor: Colors.green,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
